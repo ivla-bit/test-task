@@ -45,8 +45,8 @@ COPY --from=build /app/migrations ./migrations
 # Создаём папку temp для файлов
 RUN mkdir -p /app/temp
 
-# Открываем порт
-EXPOSE 5000
+ENV PORT=10000
+EXPOSE $PORT
 
 # CMD с ожиданием БД и генерацией данных
 CMD ["sh", "-c", "export NODE_ENV=production && npx wait-on tcp:postgres:5432 && npm run typeorm:run || true && npm run generate-data && node dist/src/server.js"]
