@@ -1,5 +1,4 @@
 import { bucket } from "./firebase.initialize";
-import path from "path";
 import { v4 as uuidv4 } from "uuid";
 
 export async function uploadBufferToFirebase(

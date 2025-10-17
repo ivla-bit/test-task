@@ -23,6 +23,14 @@ FROM node:20-bullseye AS production
 
 WORKDIR /app
 
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive TZ=Europe/Kyiv apt-get install -y tzdata && \
+    ln -snf /usr/share/zoneinfo/Europe/Kyiv /etc/localtime && \
+    echo "Europe/Kyiv" > /etc/timezone
+ENV TZ=Europe/Kyiv
+
+
 # Копируем package.json и package-lock.json
 COPY package*.json ./
 
